@@ -144,6 +144,10 @@ ROCKSET_REQUIRED = [
     "rockset>=1.0.3",
 ]
 
+CLICKHOUSE_REQUIRED = [
+    "clickhouse-driver==0.2.1",
+]
+
 CI_REQUIRED = (
     [
         "build",
@@ -202,6 +206,7 @@ CI_REQUIRED = (
     + CASSANDRA_REQUIRED
     + AZURE_REQUIRED
     + ROCKSET_REQUIRED
+    + CLICKHOUSE_REQUIRED
 )
 
 

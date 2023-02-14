@@ -961,3 +961,68 @@ def pa_to_athena_value_type(pa_type: "pyarrow.DataType") -> str:
     }
 
     return type_map[pa_type_as_str]
+
+
+def arrow_to_clickhouse_type(arrow_type: "pyarrow.DataType") -> str:
+    t_str = str(arrow_type)
+    try:
+        if t_str.startswith("timestamp") or t_str.startswith("datetime"):
+            return (
+                f"DateTime64(6), {arrow_type.tz}" if "tz=" in t_str else "DateTime64(6)"
+            )
+        return {
+            "null": "null",
+            "bool": "Bool",
+            "int8": "UInt8",
+            "int16": "UInt16",
+            "int32": "UInt32",
+            "int64": "UInt64",
+            "list<item: int32>": "ARRAY(Int32)",
+            "list<item: int64>": "ARRAY(Int64)",
+            "list<item: bool>": "ARRAY(Boll)",
+            "list<item: double>": "ARRAY(Float64)",
+            "list<item: timestamp[us]>": "ARRAY(DateTime)",
+            "uint8": "UInt8",
+            "uint16": "UInt16",
+            "uint32": "UInt32",
+            "uint64": "UInt64",
+            "float": "Float32",
+            "double": "Float64",
+            "binary": "Binary(256)",
+            "string": "String",
+        }[t_str]
+    except KeyError:
+        raise ValueError(f"Unsupported type: {t_str}")
+
+
+def clickhouse_type_to_feast_value_type(type_str: str) -> ValueType:
+    if type_str.startswith("DateTime"):
+        return ValueType.UNIX_TIMESTAMP
+    is_list = False
+    if type_str.startswith("ARRAY("):
+        is_list = True
+        type_str = type_str[6:-1]
+    type_map: Dict[str, ValueType] = {
+        "Bool": ValueType.BOOL,
+        "Int8": ValueType.INT32,
+        "Int16": ValueType.INT32,
+        "Int32": ValueType.INT32,
+        "UInt8": ValueType.INT32,
+        "UInt16": ValueType.INT32,
+        "UInt32": ValueType.INT32,
+        "Int64": ValueType.INT64,
+        "UInt64": ValueType.INT64,
+        "Float32": ValueType.FLOAT,
+        "Float64": ValueType.DOUBLE,
+        "String": ValueType.STRING,
+    }
+    if type_str.startswith("Binary("):
+        value = ValueType.BYTES
+    else:
+        value = type_map.get(type_str, ValueType.UNKNOWN)
+    if value == ValueType.UNKNOWN:
+        print("unknown type:", type_str)
+        return value
+    if is_list:
+        value = ValueType[value.name + "_LIST"]
+    return value

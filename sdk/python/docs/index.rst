@@ -68,6 +68,12 @@ PostgreSQL Source
 .. autoclass:: feast.infra.offline_stores.contrib.postgres_offline_store.postgres_source.PostgreSQLSource
     :members:
 
+ClickHouseSQL Source
+------------------
+
+.. autoclass:: feast.infra.offline_stores.contrib.clickhouse_offline_store.clickhouse_source.ClickHouseSource
+    :members:
+
 Request Source
 ------------------
 
@@ -91,6 +97,8 @@ Kinesis Source
 
 .. autoclass:: feast.data_source.KinesisSource
     :members:
+
+
 
 Entity
 ==================
@@ -309,6 +317,18 @@ PostgreSQL Offline Store
     :members:
 
 .. autoclass:: feast.infra.offline_stores.contrib.postgres_offline_store.postgres.PostgreSQLRetrievalJob
+    :members:
+
+ClickHouse Offline Store
+------------------------
+
+.. autoclass:: feast.infra.offline_stores.contrib.clickhouse_offline_store.clickhouse.ClickHouseOfflineStore
+    :members:
+
+.. autoclass:: feast.infra.offline_stores.contrib.clickhouse_offline_store.clickhouse.ClickHouseOfflineStoreConfig
+    :members:
+
+.. autoclass:: feast.infra.offline_stores.contrib.clickhouse_offline_store.clickhouse.ClickhouseRetrievalJob
     :members:
 
 Online Store

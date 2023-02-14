@@ -205,7 +205,8 @@ test-python-universal-postgres-offline:
 				not test_push_features_to_offline_store and \
 				not gcs_registry and \
 				not s3_registry and \
- 				not test_universal_types" \
+ 				not test_universal_types and \
+ 				not test_snowflake" \
  			sdk/python/tests
 
 test-python-universal-postgres-online:

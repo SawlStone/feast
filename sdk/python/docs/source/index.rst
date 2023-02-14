@@ -68,6 +68,12 @@ PostgreSQL Source
 .. autoclass:: feast.infra.offline_stores.contrib.postgres_offline_store.postgres_source.PostgreSQLSource
     :members:
 
+ClickHouse Source
+------------------
+
+.. autoclass:: feast.infra.offline_stores.contrib.clickhouse_offline_store.clickhouse_source.ClickhouseSource
+    :members:
+
 Request Source
 ------------------
 
@@ -186,6 +192,12 @@ PostgreSQL Registry Store
 -----------------------
 
 .. autoclass:: feast.infra.registry.contrib.postgres.postgres_registry_store.PostgreSQLRegistryStore
+    :members:
+
+ClickHouse Registry Store
+-----------------------
+
+.. autoclass:: feast.infra.registry.contrib.clickhouse.clickhouse_registry_store.ClickHouseRegistryStore
     :members:
 
 Provider

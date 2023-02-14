@@ -66,6 +66,7 @@ OFFLINE_STORE_CLASS_FOR_TYPE = {
     "postgres": "feast.infra.offline_stores.contrib.postgres_offline_store.postgres.PostgreSQLOfflineStore",
     "athena": "feast.infra.offline_stores.contrib.athena_offline_store.athena.AthenaOfflineStore",
     "mssql": "feast.infra.offline_stores.contrib.mssql_offline_store.mssql.MsSqlServerOfflineStore",
+    "clickhouse": "feast.infra.offline_stores.contrib.clickhouse_offline_store.clickhouse.ClickHouseOfflineStore",
 }
 
 FEATURE_SERVER_CONFIG_CLASS_FOR_TYPE = {

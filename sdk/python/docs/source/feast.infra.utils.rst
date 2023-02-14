@@ -9,6 +9,11 @@ Subpackages
 
    feast.infra.utils.postgres
 
+.. toctree::
+   :maxdepth: 4
+
+   feast.infra.utils.clickhouse
+
 Submodules
 ----------
 
